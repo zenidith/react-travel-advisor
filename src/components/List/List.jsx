@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 
+import PlaceDetails from '../PlaceDetails/PlaceDetails';
+
 import useStyles from './styles';
 
 const List = () => {
     const classes = useStyles();
     const [type, setType] = useState('restaurants');
     const [rating, setRating] = useState('');
+
+    // dummy places which we will loop over just below the form control
+    const places = [
+        { name: 'Cool Place'},
+        { name: 'Best Beer'}, 
+        { name: 'Best Pizza'},
+        { name: 'Cool Place'},
+        { name: 'Best Beer'}, 
+        { name: 'Best Pizza'},
+        { name: 'Cool Place'},
+        { name: 'Best Beer'}, 
+        { name: 'Best Pizza'},
+    ]
 
     return (
         <div className="classes container">
@@ -30,6 +45,15 @@ const List = () => {
                     <MenuItem value={4.5}>Above 4.5</MenuItem>
                 </Select>
             </FormControl>
+            <Grid container spacing={3} className={classes.list}>
+                {/* only if we have places, map over them */}
+                {places?.map((place, i)  => (
+                    <Grid item key={i} xs={12}>
+                        <PlaceDetails place={place} />
+                    </Grid>
+                ))}
+            </Grid>
+
         </div>
         );
 }
