@@ -10,12 +10,13 @@
     const [places, setPlaces] = useState([]);
 
     const [coordinates, setCoordinates] = useState({});
-    const [bounds, setBounds] = usetState(null);
+    const [bounds, setBounds] = useState(null);
 
     useEffect(() => {
-        getPlacesData(); 
-            .then((data) => {
+        getPlacesData()
+         .then((data) => {
                 console.log(data);
+                 
                 setPlaces(data);
             })
     },  []);
