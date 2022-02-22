@@ -9,12 +9,12 @@
  const App = () => { 
     const [places, setPlaces] = useState([]);
     
-    const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0});
+    const [coordinates, setCoordinates] = useState({ });
     const [bounds, setBounds] = useState(null);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(( { coords: {latitude, longitude} } ) => {
-            setCoordinates({})
+            setCoordinates({ lat: latitude, lng: longitude })
         })
     }, []);
 
