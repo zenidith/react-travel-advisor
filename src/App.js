@@ -8,9 +8,16 @@
 
  const App = () => { 
     const [places, setPlaces] = useState([]);
-
-    const [coordinates, setCoordinates] = useState({});
+    
+    const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0});
     const [bounds, setBounds] = useState(null);
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(( { coords: {latitude, longitude} } ) => {
+            setCoordinates({})
+        })
+    }, []);
+
 
     useEffect(() => {
         getPlacesData()
@@ -19,7 +26,7 @@
                  
                 setPlaces(data);
             })
-    },  []);
+    },  [coordinates, bounds]);
 
     return (
         <>
